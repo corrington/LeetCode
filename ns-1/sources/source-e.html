@@ -1,0 +1,435 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Road2</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Road2 (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Road2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/131)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Road2$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Road2$RoadMarkers</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/32)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/133)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;import java.util.ArrayDeque;
+<i class="no-highlight">2</i>&nbsp;import java.util.Deque;
+<i class="no-highlight">3</i>&nbsp;
+<i class="no-highlight">4</i>&nbsp;class Road2 {
+<b class="nc"><i class="no-highlight">5</i>&nbsp;    private final int MAX_LANES = 3;</b>
+<i class="no-highlight">6</i>&nbsp;    Deque&lt;Position&gt; prevPositions;
+<i class="no-highlight">7</i>&nbsp;    private int lengthOfRoad;
+<i class="no-highlight">8</i>&nbsp;    private RoadMarkers[][] road;
+<b class="nc"><i class="no-highlight">9</i>&nbsp;    private int laneChanges = 0;</b>
+<i class="no-highlight">10</i>&nbsp;    // starting position
+<b class="nc"><i class="no-highlight">11</i>&nbsp;    private int curLane = 1;</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;    private int curStep = 0;</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;    Road2(int[] obstacles) {</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        lengthOfRoad = obstacles.length;</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;        road = new RoadMarkers[MAX_LANES][lengthOfRoad];</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;        prevPositions = new ArrayDeque&lt;&gt;();</b>
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;        // first step
+<b class="nc"><i class="no-highlight">19</i>&nbsp;        road[0][0] = RoadMarkers.OPEN;</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;        road[1][0] = RoadMarkers.FROG;</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        road[2][0] = RoadMarkers.OPEN;</b>
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;        // middle steps
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        for (int lane = 0; lane &lt; MAX_LANES; ++lane) {</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;            for (int step = 1; step &lt; (lengthOfRoad - 1); ++step) {</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;                road[lane][step] = RoadMarkers.OPEN;</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;                if (needsObstacle(lane, step, obstacles)) {</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;                    road[lane][step] = RoadMarkers.ROCK;</b>
+<i class="no-highlight">29</i>&nbsp;                } // if
+<i class="no-highlight">30</i>&nbsp;            } // for road
+<i class="no-highlight">31</i>&nbsp;        } // for lane
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;        // last step
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        road[0][lengthOfRoad - 1] = RoadMarkers.END;</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        road[1][lengthOfRoad - 1] = RoadMarkers.END;</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        road[2][lengthOfRoad - 1] = RoadMarkers.END;</b>
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;    } // Road constructor
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;    String roadMarkersToString(RoadMarkers marker) {
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        switch (marker) {</b>
+<i class="no-highlight">42</i>&nbsp;            case FROG:
+<b class="nc"><i class="no-highlight">43</i>&nbsp;                return &quot;F&quot;;</b>
+<i class="no-highlight">44</i>&nbsp;            case OPEN:
+<b class="nc"><i class="no-highlight">45</i>&nbsp;                return &quot;.&quot;;</b>
+<i class="no-highlight">46</i>&nbsp;            case VISITED:
+<b class="nc"><i class="no-highlight">47</i>&nbsp;                return &quot;V&quot;;</b>
+<i class="no-highlight">48</i>&nbsp;            case ROCK:
+<b class="nc"><i class="no-highlight">49</i>&nbsp;                return &quot;R&quot;;</b>
+<i class="no-highlight">50</i>&nbsp;            case END:
+<b class="nc"><i class="no-highlight">51</i>&nbsp;                return &quot;E&quot;;</b>
+<i class="no-highlight">52</i>&nbsp;            default:
+<b class="nc"><i class="no-highlight">53</i>&nbsp;                return &quot;?&quot;;</b>
+<i class="no-highlight">54</i>&nbsp;        } // switch marker
+<i class="no-highlight">55</i>&nbsp;    } // roadMarkersToString()
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;    String laneToString(RoadMarkers[] lane) {
+<b class="nc"><i class="no-highlight">58</i>&nbsp;        StringBuilder sb = new StringBuilder();</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        for (int i = 0; i &lt; lane.length; ++i) {</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;            String marker = roadMarkersToString(lane[i]) + &quot; &quot;;</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;            sb.append(marker);</b>
+<i class="no-highlight">62</i>&nbsp;        } // for i
+<b class="nc"><i class="no-highlight">63</i>&nbsp;        return sb.toString();</b>
+<i class="no-highlight">64</i>&nbsp;    } // laneToString()
+<i class="no-highlight">65</i>&nbsp;
+<i class="no-highlight">66</i>&nbsp;    @Override
+<i class="no-highlight">67</i>&nbsp;    public String toString() {
+<b class="nc"><i class="no-highlight">68</i>&nbsp;        StringBuilder sb = new StringBuilder();</b>
+<b class="nc"><i class="no-highlight">69</i>&nbsp;        for (int lane = 0; lane &lt; MAX_LANES; ++lane) {</b>
+<b class="nc"><i class="no-highlight">70</i>&nbsp;            sb.append(laneToString(road[lane]));</b>
+<b class="nc"><i class="no-highlight">71</i>&nbsp;            if (lane &lt; (MAX_LANES - 1)) {</b>
+<b class="nc"><i class="no-highlight">72</i>&nbsp;                sb.append(&quot;\n&quot;);</b>
+<i class="no-highlight">73</i>&nbsp;            }
+<i class="no-highlight">74</i>&nbsp;        }  // for lane
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        return sb.toString();</b>
+<i class="no-highlight">76</i>&nbsp;    } // toString()
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;    void markVisited(int lane, int step) {
+<b class="nc"><i class="no-highlight">79</i>&nbsp;        if (road[lane][step] == RoadMarkers.OPEN) {     // we do this so we don&#39;t</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;            road[lane][step] = RoadMarkers.VISITED;     // overwrite the END markers</b>
+<i class="no-highlight">81</i>&nbsp;        }
+<i class="no-highlight">82</i>&nbsp;    } // markVisited()
+<i class="no-highlight">83</i>&nbsp;
+<i class="no-highlight">84</i>&nbsp;    boolean wasVisited(int lane, int step) {
+<b class="nc"><i class="no-highlight">85</i>&nbsp;        return (road[lane][step] == RoadMarkers.VISITED);</b>
+<i class="no-highlight">86</i>&nbsp;    } // wasVisited()
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;    boolean needsObstacle(int lane, int step, int[] obstacles) {
+<i class="no-highlight">89</i>&nbsp;        // none of the first steps can have an obstacle
+<b class="nc"><i class="no-highlight">90</i>&nbsp;        if (step == 0) return false;</b>
+<i class="no-highlight">91</i>&nbsp;        // none of the last  steps can have an obstacle
+<b class="nc"><i class="no-highlight">92</i>&nbsp;        if (step == (obstacles.length - 1)) return false;</b>
+<i class="no-highlight">93</i>&nbsp;        // let&#39;s check the middle for an obstacle
+<b class="nc"><i class="no-highlight">94</i>&nbsp;        boolean b = ((obstacles[step] - 1) == lane);</b>
+<b class="nc"><i class="no-highlight">95</i>&nbsp;        return b;</b>
+<i class="no-highlight">96</i>&nbsp;    } // hasObstacle
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;    public boolean isEndOfRoad() {
+<b class="nc"><i class="no-highlight">99</i>&nbsp;        boolean b = (road[curLane][curStep] == RoadMarkers.END);</b>
+<b class="nc"><i class="no-highlight">100</i>&nbsp;        return b;</b>
+<i class="no-highlight">101</i>&nbsp;    } // isEndOfRoad()
+<i class="no-highlight">102</i>&nbsp;
+<i class="no-highlight">103</i>&nbsp;    public boolean hasPathsAvalable() {
+<i class="no-highlight">104</i>&nbsp;        // have we explored every path possible?
+<i class="no-highlight">105</i>&nbsp;        boolean b;
+<b class="nc"><i class="no-highlight">106</i>&nbsp;        b = (road[0][0] == RoadMarkers.VISITED);</b>
+<b class="nc"><i class="no-highlight">107</i>&nbsp;        b = b &amp;&amp; (road[1][0] == RoadMarkers.FROG);</b>
+<b class="nc"><i class="no-highlight">108</i>&nbsp;        b = b &amp;&amp; (road[2][0] == RoadMarkers.VISITED);</b>
+<b class="nc"><i class="no-highlight">109</i>&nbsp;        b = b &amp;&amp; (road[1][1] == RoadMarkers.VISITED);</b>
+<b class="nc"><i class="no-highlight">110</i>&nbsp;        b = b &amp;&amp; prevPositions.isEmpty();</b>
+<b class="nc"><i class="no-highlight">111</i>&nbsp;        return !b;</b>
+<i class="no-highlight">112</i>&nbsp;    } // hasPathAvalable()
+<i class="no-highlight">113</i>&nbsp;
+<i class="no-highlight">114</i>&nbsp;    boolean hasObstacle(int lane, int step) {
+<b class="nc"><i class="no-highlight">115</i>&nbsp;        boolean b = (road[lane][step] == RoadMarkers.ROCK);</b>
+<b class="nc"><i class="no-highlight">116</i>&nbsp;        return b;</b>
+<i class="no-highlight">117</i>&nbsp;    }
+<i class="no-highlight">118</i>&nbsp;
+<i class="no-highlight">119</i>&nbsp;    boolean isOutOfBounds(int lane, int step) {
+<b class="nc"><i class="no-highlight">120</i>&nbsp;        boolean b = (step &lt; 0) || (step &gt;= lengthOfRoad) || (lane &lt; 0) || (lane &gt;= MAX_LANES);</b>
+<b class="nc"><i class="no-highlight">121</i>&nbsp;        return b;</b>
+<i class="no-highlight">122</i>&nbsp;    }
+<i class="no-highlight">123</i>&nbsp;
+<i class="no-highlight">124</i>&nbsp;    boolean isAvailable(int lane, int step) {
+<b class="nc"><i class="no-highlight">125</i>&nbsp;        if (isOutOfBounds(lane, step)) return false;</b>
+<b class="nc"><i class="no-highlight">126</i>&nbsp;        if (hasObstacle(lane, step)) return false;</b>
+<b class="nc"><i class="no-highlight">127</i>&nbsp;        if (wasVisited(lane, step)) return false;</b>
+<b class="nc"><i class="no-highlight">128</i>&nbsp;        return true;</b>
+<i class="no-highlight">129</i>&nbsp;    }
+<i class="no-highlight">130</i>&nbsp;
+<i class="no-highlight">131</i>&nbsp;    void saveCurrentPosition() {
+<b class="nc"><i class="no-highlight">132</i>&nbsp;        Position curPos = new Position(curLane, curStep);</b>
+<b class="nc"><i class="no-highlight">133</i>&nbsp;        prevPositions.push(curPos);</b>
+<i class="no-highlight">134</i>&nbsp;    }
+<i class="no-highlight">135</i>&nbsp;
+<i class="no-highlight">136</i>&nbsp;    void moveTo(int nextLane, int nextStep) {
+<b class="nc"><i class="no-highlight">137</i>&nbsp;        saveCurrentPosition();</b>
+<i class="no-highlight">138</i>&nbsp;        // did we switch one or more lanes?
+<b class="nc"><i class="no-highlight">139</i>&nbsp;        curLane = nextLane;</b>
+<b class="nc"><i class="no-highlight">140</i>&nbsp;        curStep = nextStep;</b>
+<b class="nc"><i class="no-highlight">141</i>&nbsp;        markVisited(curLane, curStep);</b>
+<i class="no-highlight">142</i>&nbsp;    }
+<i class="no-highlight">143</i>&nbsp;
+<i class="no-highlight">144</i>&nbsp;    public boolean canMoveForward() {
+<b class="nc"><i class="no-highlight">145</i>&nbsp;        int nextLane = curLane;</b>
+<b class="nc"><i class="no-highlight">146</i>&nbsp;        int nextStep = curStep + 1;</b>
+<b class="nc"><i class="no-highlight">147</i>&nbsp;        boolean result = isAvailable(nextLane, nextStep);</b>
+<b class="nc"><i class="no-highlight">148</i>&nbsp;        return result;</b>
+<i class="no-highlight">149</i>&nbsp;    }
+<i class="no-highlight">150</i>&nbsp;
+<i class="no-highlight">151</i>&nbsp;    public void moveForward() {
+<b class="nc"><i class="no-highlight">152</i>&nbsp;        if (!canMoveForward()) return;</b>
+<b class="nc"><i class="no-highlight">153</i>&nbsp;        moveTo(curLane, curStep + 1);</b>
+<i class="no-highlight">154</i>&nbsp;    }
+<i class="no-highlight">155</i>&nbsp;
+<i class="no-highlight">156</i>&nbsp;    boolean canMoveUpOneLane() {
+<b class="nc"><i class="no-highlight">157</i>&nbsp;        int nextLane = curLane - 1;</b>
+<b class="nc"><i class="no-highlight">158</i>&nbsp;        int nextStep = curStep;</b>
+<b class="nc"><i class="no-highlight">159</i>&nbsp;        boolean result = isAvailable(nextLane, nextStep);</b>
+<b class="nc"><i class="no-highlight">160</i>&nbsp;        return result;</b>
+<i class="no-highlight">161</i>&nbsp;    }
+<i class="no-highlight">162</i>&nbsp;
+<i class="no-highlight">163</i>&nbsp;    boolean canMoveUpTwoLanes() {
+<i class="no-highlight">164</i>&nbsp;        // For this to work, we must be on the bottom lane...
+<b class="nc"><i class="no-highlight">165</i>&nbsp;        if (curLane != 2)</b>
+<b class="nc"><i class="no-highlight">166</i>&nbsp;            return false;</b>
+<i class="no-highlight">167</i>&nbsp;
+<i class="no-highlight">168</i>&nbsp;        // and there must be a rock in the middle lane...
+<b class="nc"><i class="no-highlight">169</i>&nbsp;        if (!hasObstacle(1, curStep))</b>
+<b class="nc"><i class="no-highlight">170</i>&nbsp;            return false;</b>
+<i class="no-highlight">171</i>&nbsp;
+<i class="no-highlight">172</i>&nbsp;        // and the position in the top lane must be open.
+<b class="nc"><i class="no-highlight">173</i>&nbsp;        if (!isAvailable(0, curStep))</b>
+<b class="nc"><i class="no-highlight">174</i>&nbsp;            return false;</b>
+<i class="no-highlight">175</i>&nbsp;
+<b class="nc"><i class="no-highlight">176</i>&nbsp;        return true;</b>
+<i class="no-highlight">177</i>&nbsp;    } // canMoveUpTwoLanes()
+<i class="no-highlight">178</i>&nbsp;
+<i class="no-highlight">179</i>&nbsp;    public boolean canMoveUp() {
+<b class="nc"><i class="no-highlight">180</i>&nbsp;        if (canMoveUpOneLane()) return true;</b>
+<b class="nc"><i class="no-highlight">181</i>&nbsp;        if (canMoveUpTwoLanes()) return true;</b>
+<b class="nc"><i class="no-highlight">182</i>&nbsp;        return false;</b>
+<i class="no-highlight">183</i>&nbsp;    }
+<i class="no-highlight">184</i>&nbsp;
+<i class="no-highlight">185</i>&nbsp;    public void moveUp() {
+<b class="nc"><i class="no-highlight">186</i>&nbsp;        int nextLane = curLane;</b>
+<b class="nc"><i class="no-highlight">187</i>&nbsp;        int nextStep = curStep;</b>
+<i class="no-highlight">188</i>&nbsp;
+<b class="nc"><i class="no-highlight">189</i>&nbsp;        if (canMoveUpOneLane()) {</b>
+<b class="nc"><i class="no-highlight">190</i>&nbsp;            nextLane = curLane - 1;</b>
+<b class="nc"><i class="no-highlight">191</i>&nbsp;        } else if (canMoveUpTwoLanes()) {</b>
+<b class="nc"><i class="no-highlight">192</i>&nbsp;            nextLane = curLane - 2;</b>
+<i class="no-highlight">193</i>&nbsp;        }
+<i class="no-highlight">194</i>&nbsp;
+<b class="nc"><i class="no-highlight">195</i>&nbsp;        moveTo(nextLane, nextStep);</b>
+<b class="nc"><i class="no-highlight">196</i>&nbsp;        laneChanges++;</b>
+<i class="no-highlight">197</i>&nbsp;    }
+<i class="no-highlight">198</i>&nbsp;
+<i class="no-highlight">199</i>&nbsp;    boolean canMoveDownOneLane() {
+<b class="nc"><i class="no-highlight">200</i>&nbsp;        int nextLane = curLane + 1;</b>
+<b class="nc"><i class="no-highlight">201</i>&nbsp;        int nextStep = curStep;</b>
+<b class="nc"><i class="no-highlight">202</i>&nbsp;        boolean result = isAvailable(nextLane, nextStep);</b>
+<b class="nc"><i class="no-highlight">203</i>&nbsp;        return result;</b>
+<i class="no-highlight">204</i>&nbsp;    }
+<i class="no-highlight">205</i>&nbsp;
+<i class="no-highlight">206</i>&nbsp;    boolean canMoveDownTwoLanes() {
+<i class="no-highlight">207</i>&nbsp;        // For this to work, we must be on the top lane...
+<b class="nc"><i class="no-highlight">208</i>&nbsp;        if (curLane != 0) return false;</b>
+<i class="no-highlight">209</i>&nbsp;
+<i class="no-highlight">210</i>&nbsp;        // and there must be a rock in the middle lane...
+<b class="nc"><i class="no-highlight">211</i>&nbsp;        if (!hasObstacle(1, curStep)) return false;</b>
+<i class="no-highlight">212</i>&nbsp;
+<i class="no-highlight">213</i>&nbsp;        // and the position in the bottom lane must be open.
+<b class="nc"><i class="no-highlight">214</i>&nbsp;        if (!isAvailable(2, curStep)) return false;</b>
+<i class="no-highlight">215</i>&nbsp;
+<b class="nc"><i class="no-highlight">216</i>&nbsp;        return true;</b>
+<i class="no-highlight">217</i>&nbsp;    }
+<i class="no-highlight">218</i>&nbsp;
+<i class="no-highlight">219</i>&nbsp;    public boolean canMoveDown() {
+<b class="nc"><i class="no-highlight">220</i>&nbsp;        if (canMoveDownOneLane()) return true;</b>
+<b class="nc"><i class="no-highlight">221</i>&nbsp;        if (canMoveDownTwoLanes()) return true;</b>
+<b class="nc"><i class="no-highlight">222</i>&nbsp;        return false;</b>
+<i class="no-highlight">223</i>&nbsp;    }
+<i class="no-highlight">224</i>&nbsp;
+<i class="no-highlight">225</i>&nbsp;    public void moveDown() {
+<b class="nc"><i class="no-highlight">226</i>&nbsp;        int nextLane = curLane;</b>
+<b class="nc"><i class="no-highlight">227</i>&nbsp;        int nextStep = curStep;</b>
+<i class="no-highlight">228</i>&nbsp;
+<b class="nc"><i class="no-highlight">229</i>&nbsp;        if (canMoveDownOneLane()) {</b>
+<b class="nc"><i class="no-highlight">230</i>&nbsp;            nextLane = curLane + 1;</b>
+<b class="nc"><i class="no-highlight">231</i>&nbsp;        } else if (canMoveDownTwoLanes()) {</b>
+<b class="nc"><i class="no-highlight">232</i>&nbsp;            nextLane = curLane + 2;</b>
+<i class="no-highlight">233</i>&nbsp;        }
+<i class="no-highlight">234</i>&nbsp;
+<b class="nc"><i class="no-highlight">235</i>&nbsp;        moveTo(nextLane, nextStep);</b>
+<b class="nc"><i class="no-highlight">236</i>&nbsp;        laneChanges++;</b>
+<i class="no-highlight">237</i>&nbsp;    }
+<i class="no-highlight">238</i>&nbsp;
+<i class="no-highlight">239</i>&nbsp;    boolean wasLaneChange(Position pos1, Position pos2) {
+<b class="nc"><i class="no-highlight">240</i>&nbsp;        boolean b = pos1.getLane() != pos2.getLane();</b>
+<b class="nc"><i class="no-highlight">241</i>&nbsp;        return b;</b>
+<i class="no-highlight">242</i>&nbsp;    }
+<i class="no-highlight">243</i>&nbsp;
+<i class="no-highlight">244</i>&nbsp;    public void moveBack() {
+<b class="nc"><i class="no-highlight">245</i>&nbsp;        if (prevPositions.isEmpty()) return;</b>
+<b class="nc"><i class="no-highlight">246</i>&nbsp;        Position curPos = new Position(curLane, curStep);</b>
+<b class="nc"><i class="no-highlight">247</i>&nbsp;        Position prevPos = prevPositions.pop();</b>
+<b class="nc"><i class="no-highlight">248</i>&nbsp;        if (wasLaneChange(curPos, prevPos)) {</b>
+<b class="nc"><i class="no-highlight">249</i>&nbsp;            laneChanges--;</b>
+<i class="no-highlight">250</i>&nbsp;        }
+<i class="no-highlight">251</i>&nbsp;        return;
+<i class="no-highlight">252</i>&nbsp;    }
+<i class="no-highlight">253</i>&nbsp;
+<i class="no-highlight">254</i>&nbsp;    public int getLaneChanges() {
+<b class="nc"><i class="no-highlight">255</i>&nbsp;        return laneChanges;</b>
+<i class="no-highlight">256</i>&nbsp;    }
+<i class="no-highlight">257</i>&nbsp;
+<i class="no-highlight">258</i>&nbsp;    void restLanes() {
+<b class="nc"><i class="no-highlight">259</i>&nbsp;        for (int lane = 0; lane &lt; MAX_LANES; ++lane) {</b>
+<b class="nc"><i class="no-highlight">260</i>&nbsp;            for (int step = 0; step &lt; lengthOfRoad; ++step) {</b>
+<b class="nc"><i class="no-highlight">261</i>&nbsp;                if (road[lane][step] == RoadMarkers.VISITED) {</b>
+<b class="nc"><i class="no-highlight">262</i>&nbsp;                    road[lane][step] = RoadMarkers.OPEN;</b>
+<i class="no-highlight">263</i>&nbsp;                } // if
+<i class="no-highlight">264</i>&nbsp;            } // for step
+<i class="no-highlight">265</i>&nbsp;        } // for lane
+<i class="no-highlight">266</i>&nbsp;    } // restLanes()
+<i class="no-highlight">267</i>&nbsp;
+<i class="no-highlight">268</i>&nbsp;    public void reset() {
+<b class="nc"><i class="no-highlight">269</i>&nbsp;        restLanes();</b>
+<b class="nc"><i class="no-highlight">270</i>&nbsp;        prevPositions.clear();</b>
+<b class="nc"><i class="no-highlight">271</i>&nbsp;        laneChanges = 0;</b>
+<i class="no-highlight">272</i>&nbsp;        // set starting position
+<b class="nc"><i class="no-highlight">273</i>&nbsp;        curLane = 1;</b>
+<b class="nc"><i class="no-highlight">274</i>&nbsp;        curStep = 0;</b>
+<i class="no-highlight">275</i>&nbsp;    } // reset()
+<i class="no-highlight">276</i>&nbsp;
+<i class="no-highlight">277</i>&nbsp;    Position getCurrentPosition() {
+<b class="nc"><i class="no-highlight">278</i>&nbsp;        return new Position(curLane, curStep);</b>
+<i class="no-highlight">279</i>&nbsp;    }
+<i class="no-highlight">280</i>&nbsp;
+<i class="no-highlight">281</i>&nbsp;
+<b class="nc"><i class="no-highlight">282</i>&nbsp;    private enum RoadMarkers {FROG, OPEN, VISITED, ROCK, END}</b>
+<i class="no-highlight">283</i>&nbsp;
+<i class="no-highlight">284</i>&nbsp;
+<i class="no-highlight">285</i>&nbsp;} // class Road
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-29 10:36</div>
+</div>
+</body>
+</html>

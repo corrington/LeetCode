@@ -1,0 +1,345 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Road</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Road (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Road</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/115)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;import java.util.LinkedList;
+<i class="no-highlight">2</i>&nbsp;import java.util.*;
+<i class="no-highlight">3</i>&nbsp;
+<i class="no-highlight">4</i>&nbsp;class Road {
+<b class="nc"><i class="no-highlight">5</i>&nbsp;    private final int MAX_LANES = 3;</b>
+<i class="no-highlight">6</i>&nbsp;    private int lengthOfRoad;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;    // Because we&#39;re going to use a Depth-First Search (DFS), we use a PriorityQueue to hold the next steps.
+<i class="no-highlight">9</i>&nbsp;    // Positions that are further down the road (e.g., a larger step value) are considered &quot;bigger.&quot;
+<b class="nc"><i class="no-highlight">10</i>&nbsp;    private HashMap&lt;Position, PriorityQueue&lt;Position&gt;&gt; graphOfRoad = new HashMap&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">11</i>&nbsp;    private HashMap&lt;Position, Boolean&gt; visitedPosList = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">12</i>&nbsp;
+<b class="nc"><i class="no-highlight">13</i>&nbsp;    Road(int[] obstacles) {</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        lengthOfRoad = obstacles.length;</b>
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;        // build a graph based on the road and list of obstacles
+<b class="nc"><i class="no-highlight">17</i>&nbsp;        for (int lane = 0; lane &lt; MAX_LANES; ++lane) {</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;            for (int step = 0; step &lt; lengthOfRoad; ++step) {</b>
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;                // we don&#39;t store rocks in the graph
+<b class="nc"><i class="no-highlight">21</i>&nbsp;                if (hasObstacle(lane, step, obstacles)) continue;</b>
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;                // we have an open space or an ending point
+<b class="nc"><i class="no-highlight">24</i>&nbsp;                Position curPosition = new Position(lane, step);</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;                PriorityQueue&lt;Position&gt; adjacentPositions = new PriorityQueue&lt;&gt;();</b>
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;                // is there a forward path?
+<b class="nc"><i class="no-highlight">28</i>&nbsp;                if (canMoveForward(lane, step, obstacles)) {</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;                    adjacentPositions.add( new Position(lane,step+1));</b>
+<i class="no-highlight">30</i>&nbsp;                }
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;                // is there an upper path?
+<b class="nc"><i class="no-highlight">33</i>&nbsp;                if (canMoveUpOne(lane, step, obstacles)) {</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;                    adjacentPositions.add( new Position(lane-1, step));</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;                } else if (canMoveUpTwo(lane, step, obstacles)) {</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;                    adjacentPositions.add( new Position(lane-2, step));</b>
+<i class="no-highlight">37</i>&nbsp;                }
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;                // is there a lower path?
+<b class="nc"><i class="no-highlight">40</i>&nbsp;                if (canMoveDownOne(lane, step, obstacles)) {</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;                    adjacentPositions.add( new Position(lane + 1, step));</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;                } else if (canMoveDownTwo(lane, step, obstacles)) {</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;                    adjacentPositions.add( new Position(lane + 2, step));</b>
+<i class="no-highlight">44</i>&nbsp;                }
+<i class="no-highlight">45</i>&nbsp;
+<b class="nc"><i class="no-highlight">46</i>&nbsp;                graphOfRoad.put(curPosition, adjacentPositions);</b>
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;            } // for step
+<i class="no-highlight">49</i>&nbsp;        } // for lane
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;    } // Road() constructor
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;    boolean hasObstacle(int lane, int step, int[] obstacles) {
+<i class="no-highlight">54</i>&nbsp;        // none of the first steps can have an obstacle
+<b class="nc"><i class="no-highlight">55</i>&nbsp;        if (step == 0) return false;</b>
+<i class="no-highlight">56</i>&nbsp;        // none of the last  steps can have an obstacle
+<b class="nc"><i class="no-highlight">57</i>&nbsp;        if (step == (obstacles.length - 1)) return false;</b>
+<i class="no-highlight">58</i>&nbsp;        // let&#39;s check the middle for an obstacle
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        boolean b = ((obstacles[step] - 1) == lane);</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;        return b;</b>
+<i class="no-highlight">61</i>&nbsp;    }
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;    boolean isStepOutOfRange(int step) {
+<b class="nc"><i class="no-highlight">64</i>&nbsp;        boolean b = (step &lt; 0) || (step &gt;= (lengthOfRoad));</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;        return b;</b>
+<i class="no-highlight">66</i>&nbsp;    }
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;    boolean isEndOfRoad(int step) {
+<b class="nc"><i class="no-highlight">69</i>&nbsp;        return (step == (lengthOfRoad - 1));</b>
+<i class="no-highlight">70</i>&nbsp;    }
+<i class="no-highlight">71</i>&nbsp;
+<i class="no-highlight">72</i>&nbsp;    boolean canMoveForward(int lane, int step, int[] obstacles) {
+<b class="nc"><i class="no-highlight">73</i>&nbsp;        if (isLaneOutOfRange(lane)) return false;</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        if (isStepOutOfRange(step)) return false;</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        int nextStep = step + 1;</b>
+<b class="nc"><i class="no-highlight">76</i>&nbsp;        if (isStepOutOfRange(nextStep)) return false;</b>
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        if (hasObstacle(lane, nextStep, obstacles)) return false;</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;        return true;</b>
+<i class="no-highlight">79</i>&nbsp;    }
+<i class="no-highlight">80</i>&nbsp;
+<i class="no-highlight">81</i>&nbsp;    boolean isLaneOutOfRange(int lane) {
+<b class="nc"><i class="no-highlight">82</i>&nbsp;        boolean b = (lane &lt; 0) || (lane &gt;= MAX_LANES);</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;        return b;</b>
+<i class="no-highlight">84</i>&nbsp;    } // isLaneOutOfRange()
+<i class="no-highlight">85</i>&nbsp;
+<i class="no-highlight">86</i>&nbsp;    boolean canMoveUpOne(int lane, int step, int[] obstacles) {
+<i class="no-highlight">87</i>&nbsp;        // guardrail check
+<b class="nc"><i class="no-highlight">88</i>&nbsp;        if (isLaneOutOfRange(lane)) return false;</b>
+<b class="nc"><i class="no-highlight">89</i>&nbsp;        if (isStepOutOfRange(step)) return false;</b>
+<i class="no-highlight">90</i>&nbsp;        // If we&#39;re in the top lane, no go.
+<b class="nc"><i class="no-highlight">91</i>&nbsp;        if (lane == 0) return false;</b>
+<i class="no-highlight">92</i>&nbsp;        // If we&#39;re in the middle and there&#39;s a rock in the top lane, no go.
+<b class="nc"><i class="no-highlight">93</i>&nbsp;        if ((lane == 1) &amp;&amp; hasObstacle(0, step, obstacles)) return false;</b>
+<i class="no-highlight">94</i>&nbsp;        // if we&#39;re in the bottom lane and there&#39;s a rock in the middle lane, no go.
+<b class="nc"><i class="no-highlight">95</i>&nbsp;        if ((lane == 2) &amp;&amp; hasObstacle(1, step, obstacles)) return false;</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;        return true;</b>
+<i class="no-highlight">97</i>&nbsp;    }
+<i class="no-highlight">98</i>&nbsp;
+<i class="no-highlight">99</i>&nbsp;    boolean canMoveUpTwo(int lane, int step, int[] obstacles) {
+<i class="no-highlight">100</i>&nbsp;        // guardrail check
+<b class="nc"><i class="no-highlight">101</i>&nbsp;        if (isLaneOutOfRange(lane)) return false;</b>
+<b class="nc"><i class="no-highlight">102</i>&nbsp;        if (isStepOutOfRange(step)) return false;</b>
+<i class="no-highlight">103</i>&nbsp;        // the top lane must be open
+<b class="nc"><i class="no-highlight">104</i>&nbsp;        if (hasObstacle(0, step, obstacles)) return false;</b>
+<i class="no-highlight">105</i>&nbsp;        // the middle lane must have a rock
+<b class="nc"><i class="no-highlight">106</i>&nbsp;        if (!hasObstacle(1, step, obstacles)) return false;</b>
+<i class="no-highlight">107</i>&nbsp;        // we must be making this call from the bottom lane
+<b class="nc"><i class="no-highlight">108</i>&nbsp;        if (lane != 2) return false;</b>
+<b class="nc"><i class="no-highlight">109</i>&nbsp;        return true;</b>
+<i class="no-highlight">110</i>&nbsp;    }
+<i class="no-highlight">111</i>&nbsp;
+<i class="no-highlight">112</i>&nbsp;    boolean canMoveDownOne(int lane, int step, int[] obstacles) {
+<i class="no-highlight">113</i>&nbsp;        // guardrail check
+<b class="nc"><i class="no-highlight">114</i>&nbsp;        if (isLaneOutOfRange(lane)) return false;</b>
+<b class="nc"><i class="no-highlight">115</i>&nbsp;        if (isStepOutOfRange(step)) return false;</b>
+<i class="no-highlight">116</i>&nbsp;        // if we&#39;re in the bottom lane, no go.
+<b class="nc"><i class="no-highlight">117</i>&nbsp;        if (lane == 2) return false;</b>
+<i class="no-highlight">118</i>&nbsp;        // if we&#39;re in the middle lane and there&#39;s a rock in the bottom lane, no go.
+<b class="nc"><i class="no-highlight">119</i>&nbsp;        if ((lane == 1) &amp;&amp; hasObstacle(2, step, obstacles)) return false;</b>
+<i class="no-highlight">120</i>&nbsp;        // if we&#39;re in the top lane  and there&#39;s a rock in the middle lane, no go.
+<b class="nc"><i class="no-highlight">121</i>&nbsp;        if ((lane == 0) &amp;&amp; hasObstacle(1, step, obstacles)) return false;</b>
+<b class="nc"><i class="no-highlight">122</i>&nbsp;        return true;</b>
+<i class="no-highlight">123</i>&nbsp;    }
+<i class="no-highlight">124</i>&nbsp;
+<i class="no-highlight">125</i>&nbsp;    boolean canMoveDownTwo(int lane, int step, int[] obstacles) {
+<i class="no-highlight">126</i>&nbsp;        // guardrail check
+<b class="nc"><i class="no-highlight">127</i>&nbsp;        if (isLaneOutOfRange(lane)) return false;</b>
+<b class="nc"><i class="no-highlight">128</i>&nbsp;        if (isStepOutOfRange(step)) return false;</b>
+<i class="no-highlight">129</i>&nbsp;        // the bottom lane must be open
+<b class="nc"><i class="no-highlight">130</i>&nbsp;        if (hasObstacle(2, step, obstacles)) return false;</b>
+<i class="no-highlight">131</i>&nbsp;        // the middle lane must have a rock
+<b class="nc"><i class="no-highlight">132</i>&nbsp;        if (!hasObstacle(1, step, obstacles)) return false;</b>
+<i class="no-highlight">133</i>&nbsp;        // we must be making this call from the top lane
+<b class="nc"><i class="no-highlight">134</i>&nbsp;        if (lane != 0) return false;</b>
+<b class="nc"><i class="no-highlight">135</i>&nbsp;        return true;</b>
+<i class="no-highlight">136</i>&nbsp;    }
+<i class="no-highlight">137</i>&nbsp;
+<i class="no-highlight">138</i>&nbsp;    String strOfAdjPositions(Queue&lt;Position&gt; adjPositions) {
+<b class="nc"><i class="no-highlight">139</i>&nbsp;        if (adjPositions.size() == 0) return &quot;&lt;Empty&gt;&quot;;</b>
+<i class="no-highlight">140</i>&nbsp;
+<b class="nc"><i class="no-highlight">141</i>&nbsp;        StringBuilder sb = new StringBuilder();</b>
+<b class="nc"><i class="no-highlight">142</i>&nbsp;        for (var pos : adjPositions) {</b>
+<b class="nc"><i class="no-highlight">143</i>&nbsp;            sb.append(pos.toString() + &quot;, &quot;);</b>
+<b class="nc"><i class="no-highlight">144</i>&nbsp;        }</b>
+<b class="nc"><i class="no-highlight">145</i>&nbsp;        return sb.toString();</b>
+<i class="no-highlight">146</i>&nbsp;    } // strOfAdjPositions()
+<i class="no-highlight">147</i>&nbsp;
+<i class="no-highlight">148</i>&nbsp;    public void print() {
+<b class="nc"><i class="no-highlight">149</i>&nbsp;        if (graphOfRoad.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">150</i>&nbsp;            System.out.println(&quot;graphOfRoad is &lt;empty&gt;&quot;);</b>
+<i class="no-highlight">151</i>&nbsp;            return;
+<i class="no-highlight">152</i>&nbsp;        }
+<i class="no-highlight">153</i>&nbsp;
+<b class="nc"><i class="no-highlight">154</i>&nbsp;        for (var entry : graphOfRoad.entrySet()) {</b>
+<b class="nc"><i class="no-highlight">155</i>&nbsp;            var curPosition = entry.getKey();</b>
+<b class="nc"><i class="no-highlight">156</i>&nbsp;            var adjPositions = entry.getValue();</b>
+<b class="nc"><i class="no-highlight">157</i>&nbsp;            System.out.println(curPosition + &quot; -&gt; &quot; + strOfAdjPositions(adjPositions));</b>
+<b class="nc"><i class="no-highlight">158</i>&nbsp;        } // for entry</b>
+<i class="no-highlight">159</i>&nbsp;    } // print()
+<i class="no-highlight">160</i>&nbsp;
+<i class="no-highlight">161</i>&nbsp;    boolean isEndOfRoad( Position pos) {
+<b class="nc"><i class="no-highlight">162</i>&nbsp;        boolean result = (pos.getStep() == (lengthOfRoad - 1));</b>
+<b class="nc"><i class="no-highlight">163</i>&nbsp;        return result;</b>
+<i class="no-highlight">164</i>&nbsp;    }
+<i class="no-highlight">165</i>&nbsp;
+<i class="no-highlight">166</i>&nbsp;    boolean isLaneChange(Position curPos, Position nextPos ) {
+<b class="nc"><i class="no-highlight">167</i>&nbsp;        boolean result = (curPos.getLane() != nextPos.getLane());</b>
+<b class="nc"><i class="no-highlight">168</i>&nbsp;        return result;</b>
+<i class="no-highlight">169</i>&nbsp;    }
+<i class="no-highlight">170</i>&nbsp;
+<i class="no-highlight">171</i>&nbsp;    int walkabout(Position curPos, int laneChanges) {
+<b class="nc"><i class="no-highlight">172</i>&nbsp;        if (isEndOfRoad(curPos)) {</b>
+<b class="nc"><i class="no-highlight">173</i>&nbsp;            return 0;</b>
+<i class="no-highlight">174</i>&nbsp;        } // if
+<i class="no-highlight">175</i>&nbsp;
+<i class="no-highlight">176</i>&nbsp;        // get the list of next possible positions and visit them
+<b class="nc"><i class="no-highlight">177</i>&nbsp;        PriorityQueue&lt;Position&gt; nextPosList = graphOfRoad.get(curPos);</b>
+<b class="nc"><i class="no-highlight">178</i>&nbsp;        for ( var nextPos : nextPosList) {</b>
+<i class="no-highlight">179</i>&nbsp;
+<i class="no-highlight">180</i>&nbsp;            // if we&#39;ve already seen this one, ignore it
+<b class="nc"><i class="no-highlight">181</i>&nbsp;            if (visitedPosList.containsKey(nextPos)) continue;</b>
+<i class="no-highlight">182</i>&nbsp;
+<i class="no-highlight">183</i>&nbsp;            // This one is new, Let&#39;s explore it
+<b class="nc"><i class="no-highlight">184</i>&nbsp;            visitedPosList.put(nextPos,true);</b>
+<b class="nc"><i class="no-highlight">185</i>&nbsp;            int delta = isLaneChange(curPos, nextPos) ? 1 : 0;</b>
+<b class="nc"><i class="no-highlight">186</i>&nbsp;            walkabout(nextPos, laneChanges + delta);</b>
+<i class="no-highlight">187</i>&nbsp;
+<b class="nc"><i class="no-highlight">188</i>&nbsp;        } // for nextPos</b>
+<i class="no-highlight">189</i>&nbsp;
+<b class="nc"><i class="no-highlight">190</i>&nbsp;        return 0;</b>
+<i class="no-highlight">191</i>&nbsp;
+<i class="no-highlight">192</i>&nbsp;    } // walkabout()
+<i class="no-highlight">193</i>&nbsp;
+<i class="no-highlight">194</i>&nbsp;    public int minSideJumps2() {
+<b class="nc"><i class="no-highlight">195</i>&nbsp;        Position startingPoint = new Position(1,0);</b>
+<b class="nc"><i class="no-highlight">196</i>&nbsp;        int laneChanges = walkabout(startingPoint,0);</b>
+<b class="nc"><i class="no-highlight">197</i>&nbsp;        return laneChanges;</b>
+<i class="no-highlight">198</i>&nbsp;    } // minSideJumps()
+<i class="no-highlight">199</i>&nbsp;
+<i class="no-highlight">200</i>&nbsp;    public int minSideJumps() {
+<b class="nc"><i class="no-highlight">201</i>&nbsp;        int sideJumps = 0;</b>
+<b class="nc"><i class="no-highlight">202</i>&nbsp;        boolean isSearching = true;</b>
+<i class="no-highlight">203</i>&nbsp;        // to keep track of the positions we need to check
+<b class="nc"><i class="no-highlight">204</i>&nbsp;        Queue&lt;Position&gt; unvisitedPositions = new LinkedList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">205</i>&nbsp;        var startingPos = new Position(1,0);</b>
+<b class="nc"><i class="no-highlight">206</i>&nbsp;        unvisitedPositions.add(startingPos);</b>
+<i class="no-highlight">207</i>&nbsp;        // to keep track of the positions we&#39;ve seen before
+<b class="nc"><i class="no-highlight">208</i>&nbsp;        Queue&lt;Position&gt; visitedPositions = new LinkedList&lt;&gt;();</b>
+<i class="no-highlight">209</i>&nbsp;        // to keep track of the distances from our starting point to each of the other nodes.
+<b class="nc"><i class="no-highlight">210</i>&nbsp;        HashMap&lt;Position,Integer&gt; distances = new HashMap&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">211</i>&nbsp;        distances.put(startingPos,0);</b>
+<i class="no-highlight">212</i>&nbsp;
+<i class="no-highlight">213</i>&nbsp;
+<b class="nc"><i class="no-highlight">214</i>&nbsp;        while (!unvisitedPositions.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">215</i>&nbsp;            Position curPos = unvisitedPositions.poll();</b>
+<i class="no-highlight">216</i>&nbsp;
+<b class="nc"><i class="no-highlight">217</i>&nbsp;            if (!visitedPositions.contains(curPos)) {</b>
+<b class="nc"><i class="no-highlight">218</i>&nbsp;                visitedPositions.add(curPos);</b>
+<i class="no-highlight">219</i>&nbsp;
+<b class="nc"><i class="no-highlight">220</i>&nbsp;                if (isEndOfRoad(curPos)) break;</b>
+<i class="no-highlight">221</i>&nbsp;
+<b class="nc"><i class="no-highlight">222</i>&nbsp;                PriorityQueue&lt;Position&gt; adjacentPositions = graphOfRoad.get(curPos);</b>
+<b class="nc"><i class="no-highlight">223</i>&nbsp;                for (var adjPos : adjacentPositions) {</b>
+<b class="nc"><i class="no-highlight">224</i>&nbsp;                    if (!visitedPositions.contains(adjPos)) {</b>
+<b class="nc"><i class="no-highlight">225</i>&nbsp;                        unvisitedPositions.add(adjPos);</b>
+<i class="no-highlight">226</i>&nbsp;                    } // if
+<b class="nc"><i class="no-highlight">227</i>&nbsp;                } // for adjPos</b>
+<i class="no-highlight">228</i>&nbsp;            } // if
+<b class="nc"><i class="no-highlight">229</i>&nbsp;        } // while</b>
+<i class="no-highlight">230</i>&nbsp;
+<b class="nc"><i class="no-highlight">231</i>&nbsp;        System.out.println(&quot;dump of visited Queue&quot;);</b>
+<b class="nc"><i class="no-highlight">232</i>&nbsp;        for (var pos : visitedPositions) {</b>
+<b class="nc"><i class="no-highlight">233</i>&nbsp;            System.out.print(&quot;(&quot; + pos.getLane() + &quot;,&quot; + pos.getStep() + &quot;), &quot;);</b>
+<b class="nc"><i class="no-highlight">234</i>&nbsp;        }</b>
+<b class="nc"><i class="no-highlight">235</i>&nbsp;        System.out.println();</b>
+<i class="no-highlight">236</i>&nbsp;
+<b class="nc"><i class="no-highlight">237</i>&nbsp;        return sideJumps;</b>
+<i class="no-highlight">238</i>&nbsp;    } // minSideJumps()
+<i class="no-highlight">239</i>&nbsp;
+<i class="no-highlight">240</i>&nbsp;} // class Road
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-29 10:36</div>
+</div>
+</body>
+</html>

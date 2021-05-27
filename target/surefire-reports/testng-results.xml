@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-04-15T13:16:38 PDT" name="ReverseIntegerTest" finished-at="2021-04-15T13:16:38 PDT" duration-ms="44">
+    <groups>
+    </groups>
+    <test started-at="2021-04-15T13:16:38 PDT" name="Command line test" finished-at="2021-04-15T13:16:38 PDT" duration-ms="44">
+      <class name="ReverseIntegerTest">
+        <test-method signature="testReverseInteger()[pri:0, instance:ReverseIntegerTest@9353778]" started-at="2021-04-15T13:16:38 PDT" name="testReverseInteger" finished-at="2021-04-15T13:16:38 PDT" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testReverseInteger -->
+      </class> <!-- ReverseIntegerTest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- ReverseIntegerTest -->
+</testng-results>

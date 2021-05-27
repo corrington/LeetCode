@@ -1,0 +1,190 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ZigZagConversion</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: ZigZagConversion (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ZigZagConversion</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><b class="nc"><i class="no-highlight">1</i>&nbsp;public class ZigZagConversion {</b>
+<i class="no-highlight">2</i>&nbsp;/*
+<i class="no-highlight">3</i>&nbsp;6. ZigZag Conversion
+<i class="no-highlight">4</i>&nbsp;The string &quot;PAYPALISHIRING&quot; is written in a zigzag pattern on a given number of
+<i class="no-highlight">5</i>&nbsp;rows like this: (you may want to display this pattern in a fixed font for better legibility)
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;    P   A   H   N
+<i class="no-highlight">8</i>&nbsp;    A P L S I I G
+<i class="no-highlight">9</i>&nbsp;    Y   I   R
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;And then read line by line: &quot;PAHNAPLSIIGYIR&quot;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;Write the code that will take a string and make this conversion given a number of rows:
+<i class="no-highlight">14</i>&nbsp;    string convert(string s, int numRows);
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;Example 1:
+<i class="no-highlight">17</i>&nbsp;Input: s = &quot;PAYPALISHIRING&quot;, numRows = 3
+<i class="no-highlight">18</i>&nbsp;Output: &quot;PAHNAPLSIIGYIR&quot;
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;Example 2:
+<i class="no-highlight">21</i>&nbsp;Input: s = &quot;PAYPALISHIRING&quot;, numRows = 4
+<i class="no-highlight">22</i>&nbsp;Output: &quot;PINALSIGYAHRPI&quot;
+<i class="no-highlight">23</i>&nbsp;Explanation:
+<i class="no-highlight">24</i>&nbsp;    P     I    N
+<i class="no-highlight">25</i>&nbsp;    A   L S  I G
+<i class="no-highlight">26</i>&nbsp;    Y A   H R
+<i class="no-highlight">27</i>&nbsp;    P     I
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;Example 3:
+<i class="no-highlight">30</i>&nbsp;Input: s = &quot;A&quot;, numRows = 1
+<i class="no-highlight">31</i>&nbsp;Output: &quot;A&quot;
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;Constraints:
+<i class="no-highlight">34</i>&nbsp;1 &lt;= s.length &lt;= 1000
+<i class="no-highlight">35</i>&nbsp;s consists of English letters (lower-case and upper-case), &#39;,&#39; and &#39;.&#39;.
+<i class="no-highlight">36</i>&nbsp;1 &lt;= numRows &lt;= 1000
+<i class="no-highlight">37</i>&nbsp; */
+<i class="no-highlight">38</i>&nbsp;    public static String convert(String s, int numRows) {
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        if ((s == null) || (s.length() == 0)) return &quot;&quot;;</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;        if (numRows == 1) return s;</b>
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;        // create an array of string builders, one for each row
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        StringBuilder[] sbs = new StringBuilder[numRows];</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;        for (int i = 0; i &lt; numRows; ++i) {</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            sbs[i] = new StringBuilder();</b>
+<i class="no-highlight">46</i>&nbsp;        } // for i;
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;        // scan through the string and stuff each letter into its appropriate sb.
+<b class="nc"><i class="no-highlight">49</i>&nbsp;        int index = 0;</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;        boolean isAscending = false;</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        for (int i = 0; i &lt; s.length(); ++i) {</b>
+<i class="no-highlight">52</i>&nbsp;
+<b class="nc"><i class="no-highlight">53</i>&nbsp;            sbs[index].append(s.charAt(i));</b>
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;            // if we hit the min or the max, we have to flip our direction,
+<i class="no-highlight">56</i>&nbsp;            // like a SIN wave oscillates inside the min and max
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            if ((index == 0) || (index == (numRows - 1))) {</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;                isAscending = ! isAscending;</b>
+<i class="no-highlight">59</i>&nbsp;            }
+<i class="no-highlight">60</i>&nbsp;
+<b class="nc"><i class="no-highlight">61</i>&nbsp;            index +=  isAscending ? 1 : -1;</b>
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;        } // for i
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;        // glue together all of the string builders, convert it to a string, and return it
+<b class="nc"><i class="no-highlight">66</i>&nbsp;        StringBuilder sbFinal = new StringBuilder();</b>
+<b class="nc"><i class="no-highlight">67</i>&nbsp;        for (var sb : sbs) {</b>
+<b class="nc"><i class="no-highlight">68</i>&nbsp;            sbFinal.append(sb);</b>
+<i class="no-highlight">69</i>&nbsp;        }
+<i class="no-highlight">70</i>&nbsp;
+<b class="nc"><i class="no-highlight">71</i>&nbsp;        String result = sbFinal.toString();</b>
+<b class="nc"><i class="no-highlight">72</i>&nbsp;        return result;</b>
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;    } // convert()
+<i class="no-highlight">75</i>&nbsp;
+<i class="no-highlight">76</i>&nbsp;    public static void main(String[] args) {
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        System.out.println(convert(&quot;PAYPALISHIRING&quot;, 3));</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;        System.out.println(&quot;PAHNAPLSIIGYIR\n&quot;);</b>
+<b class="nc"><i class="no-highlight">79</i>&nbsp;        System.out.println(convert(&quot;PAYPALISHIRING&quot;, 4));</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;        System.out.println(&quot;PINALSIGYAHRPI\n&quot;);</b>
+<b class="nc"><i class="no-highlight">81</i>&nbsp;        System.out.println(convert(&quot;A&quot;, 1));</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;        System.out.println(&quot;A\n&quot;);</b>
+<i class="no-highlight">83</i>&nbsp;    } // main()
+<i class="no-highlight">84</i>&nbsp;
+<i class="no-highlight">85</i>&nbsp;} // class ZigZagConversion
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-29 10:36</div>
+</div>
+</body>
+</html>

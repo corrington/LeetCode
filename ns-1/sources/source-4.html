@@ -1,0 +1,235 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LongestPalindromicSubstring</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: LongestPalindromicSubstring (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LongestPalindromicSubstring</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/48)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;/*
+<i class="no-highlight">2</i>&nbsp;https://leetcode.com/problems/longest-palindromic-substring/
+<i class="no-highlight">3</i>&nbsp;Given a string s, return the longest palindromic substring in s.
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;Example 1:
+<i class="no-highlight">6</i>&nbsp;Input: s = &quot;babad&quot;
+<i class="no-highlight">7</i>&nbsp;Output: &quot;bab&quot;
+<i class="no-highlight">8</i>&nbsp;Note: &quot;aba&quot; is also a valid answer.
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;Example 2:
+<i class="no-highlight">11</i>&nbsp;Input: s = &quot;cbbd&quot;
+<i class="no-highlight">12</i>&nbsp;Output: &quot;bb&quot;
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;Example 3:
+<i class="no-highlight">15</i>&nbsp;Input: s = &quot;a&quot;
+<i class="no-highlight">16</i>&nbsp;Output: &quot;a&quot;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;Example 4:
+<i class="no-highlight">19</i>&nbsp;Input: s = &quot;ac&quot;
+<i class="no-highlight">20</i>&nbsp;Output: &quot;a&quot;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;Constraints:
+<i class="no-highlight">23</i>&nbsp;1 &lt;= s.length &lt;= 1000
+<i class="no-highlight">24</i>&nbsp;string consist of only digits and English letters (lower-case and/or upper-case)
+<i class="no-highlight">25</i>&nbsp; */
+<b class="nc"><i class="no-highlight">26</i>&nbsp;public class LongestPalindromicSubstring {</b>
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    private static boolean isPalindrome(String s) {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        if (s.length() == 1) return true;</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        if ((s.length() == 2) &amp;&amp; (s.charAt(0) == s.charAt(1))) return true;</b>
+<i class="no-highlight">31</i>&nbsp;
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        for (int i = 0; i &lt; (s.length() / 2); ++i) {</b>
+<i class="no-highlight">33</i>&nbsp;            // Compare the chars at the front of the the string with those at the back.
+<i class="no-highlight">34</i>&nbsp;            // If we find a difference, the string is NOT a palindrome.
+<b class="nc"><i class="no-highlight">35</i>&nbsp;            if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;                return false;</b>
+<i class="no-highlight">37</i>&nbsp;            }
+<i class="no-highlight">38</i>&nbsp;        } // for i
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        return true;</b>
+<i class="no-highlight">40</i>&nbsp;    } // isPalindrome()
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    /*
+<i class="no-highlight">43</i>&nbsp;    The simple brute force method.
+<i class="no-highlight">44</i>&nbsp;     */
+<i class="no-highlight">45</i>&nbsp;    public static String longestPalindrome1(String s) {
+<b class="nc"><i class="no-highlight">46</i>&nbsp;        if (s.length() == 1) return s;</b>
+<i class="no-highlight">47</i>&nbsp;
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        String longestPal = &quot;&quot;;</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;        for (int head = 0; head &lt; s.length() - 1; ++head) {</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;            for (int tail = head + 1; tail &lt;= s.length(); ++tail) {</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;                String sub = s.substring(head, tail);</b>
+<b class="nc"><i class="no-highlight">52</i>&nbsp;                if (isPalindrome(sub)) {</b>
+<b class="nc"><i class="no-highlight">53</i>&nbsp;                    if (sub.length() &gt; longestPal.length()) {</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;                        longestPal = sub;</b>
+<i class="no-highlight">55</i>&nbsp;                    }
+<i class="no-highlight">56</i>&nbsp;                }
+<i class="no-highlight">57</i>&nbsp;            } // for tail
+<i class="no-highlight">58</i>&nbsp;        } // for head
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        return longestPal;</b>
+<i class="no-highlight">60</i>&nbsp;    } // longestPalindrome1()
+<i class="no-highlight">61</i>&nbsp;
+<i class="no-highlight">62</i>&nbsp;    /*
+<i class="no-highlight">63</i>&nbsp;    A slightly improved brute force method.
+<i class="no-highlight">64</i>&nbsp;    Using the beginIndex and endIndex, a &quot;window&quot; is defined.
+<i class="no-highlight">65</i>&nbsp;    The window is slid along the string and substrings within the window
+<i class="no-highlight">66</i>&nbsp;    and extracted and tested. When the window hits the end of the string,
+<i class="no-highlight">67</i>&nbsp;    the window is shrunk by one and the process begins again.
+<i class="no-highlight">68</i>&nbsp;    Because the window size is going from large to small, the first palindrome
+<i class="no-highlight">69</i>&nbsp;    found is returned. If no palindrome exists, the first letter of the string
+<i class="no-highlight">70</i>&nbsp;    is returned.
+<i class="no-highlight">71</i>&nbsp;     */
+<i class="no-highlight">72</i>&nbsp;    public static String longestPalindrome2(String s) {
+<b class="nc"><i class="no-highlight">73</i>&nbsp;        if (s.length() == 1) return s;</b>
+<i class="no-highlight">74</i>&nbsp;
+<i class="no-highlight">75</i>&nbsp;        // Define a &quot;window&quot; and slide it left to right across the string.
+<i class="no-highlight">76</i>&nbsp;        // After each iteration, make the window a little smaller
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        for (int windowSize = s.length() - 1; windowSize &gt; 0; --windowSize) {</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;            for (int beginIndex = 0; beginIndex &lt; s.length() - windowSize; ++beginIndex) {</b>
+<b class="nc"><i class="no-highlight">79</i>&nbsp;                int endIndex = beginIndex + windowSize + 1;</b>
+<i class="no-highlight">80</i>&nbsp;                // extract a substring from within the window and test it
+<b class="nc"><i class="no-highlight">81</i>&nbsp;                String candidate = s.substring(beginIndex, endIndex);</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;                if (isPalindrome(candidate)) {</b>
+<i class="no-highlight">83</i>&nbsp;                    // the first palindrome found is the largest
+<b class="nc"><i class="no-highlight">84</i>&nbsp;                    return candidate;</b>
+<i class="no-highlight">85</i>&nbsp;                }
+<i class="no-highlight">86</i>&nbsp;            }
+<i class="no-highlight">87</i>&nbsp;        } // for window
+<i class="no-highlight">88</i>&nbsp;
+<i class="no-highlight">89</i>&nbsp;        // Since we didn&#39;t find a palindrome, return string&#39;s first character.
+<b class="nc"><i class="no-highlight">90</i>&nbsp;        return s.substring(0, 1);</b>
+<i class="no-highlight">91</i>&nbsp;
+<i class="no-highlight">92</i>&nbsp;    } // longestPalindrome()
+<i class="no-highlight">93</i>&nbsp;
+<i class="no-highlight">94</i>&nbsp;    public static String longestPalindrome(String s) {
+<b class="nc"><i class="no-highlight">95</i>&nbsp;        if (s == null || s.length() &lt; 1) return &quot;&quot;;</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;        int start = 0, end = 0;</b>
+<b class="nc"><i class="no-highlight">97</i>&nbsp;        for (int i = 0; i &lt; s.length(); i++) {</b>
+<b class="nc"><i class="no-highlight">98</i>&nbsp;            int len1 = expandAroundCenter(s, i, i);               // check for the odd-length palindromes</b>
+<b class="nc"><i class="no-highlight">99</i>&nbsp;            int len2 = expandAroundCenter(s, i, i + 1);     //  check for the even-length palindromes</b>
+<b class="nc"><i class="no-highlight">100</i>&nbsp;            int len = Math.max(len1, len2);</b>
+<b class="nc"><i class="no-highlight">101</i>&nbsp;            if (len &gt; end - start) {</b>
+<b class="nc"><i class="no-highlight">102</i>&nbsp;                start = i - (len - 1) / 2;</b>
+<b class="nc"><i class="no-highlight">103</i>&nbsp;                end = i + len / 2;</b>
+<i class="no-highlight">104</i>&nbsp;            }
+<i class="no-highlight">105</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">106</i>&nbsp;        return s.substring(start, end + 1);</b>
+<i class="no-highlight">107</i>&nbsp;    }
+<i class="no-highlight">108</i>&nbsp;
+<i class="no-highlight">109</i>&nbsp;    private static int expandAroundCenter(String s, int left, int right) {
+<b class="nc"><i class="no-highlight">110</i>&nbsp;        int L = left, R = right;</b>
+<b class="nc"><i class="no-highlight">111</i>&nbsp;        while (L &gt;= 0 &amp;&amp; R &lt; s.length() &amp;&amp; s.charAt(L) == s.charAt(R)) {</b>
+<b class="nc"><i class="no-highlight">112</i>&nbsp;            L--;</b>
+<b class="nc"><i class="no-highlight">113</i>&nbsp;            R++;</b>
+<i class="no-highlight">114</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">115</i>&nbsp;        return R - L - 1;</b>
+<i class="no-highlight">116</i>&nbsp;    }
+<i class="no-highlight">117</i>&nbsp;
+<i class="no-highlight">118</i>&nbsp;    public static void main(String[] args) {
+<b class="nc"><i class="no-highlight">119</i>&nbsp;        System.out.println(longestPalindrome(&quot;babad&quot;)); // bab</b>
+<b class="nc"><i class="no-highlight">120</i>&nbsp;        System.out.println(longestPalindrome(&quot;cbbd&quot;)); // bb</b>
+<b class="nc"><i class="no-highlight">121</i>&nbsp;        System.out.println(longestPalindrome(&quot;a&quot;)); // a</b>
+<b class="nc"><i class="no-highlight">122</i>&nbsp;        System.out.println(longestPalindrome(&quot;ac&quot;)); // a</b>
+<b class="nc"><i class="no-highlight">123</i>&nbsp;        System.out.println(longestPalindrome(&quot;anutforajaroftuna&quot;)); // anutforajaroftuna</b>
+<b class="nc"><i class="no-highlight">124</i>&nbsp;        System.out.println(longestPalindrome(&quot;asdfasdfanutforajaroftunaeasgeg&quot;)); // anutforajaroftuna</b>
+<b class="nc"><i class="no-highlight">125</i>&nbsp;        System.out.println(longestPalindrome(&quot;tacocatfefd&quot;)); // tacocat</b>
+<b class="nc"><i class="no-highlight">126</i>&nbsp;        System.out.println(longestPalindrome(&quot;oejftacocat&quot;)); // tacocat</b>
+<b class="nc"><i class="no-highlight">127</i>&nbsp;        System.out.println(longestPalindrome(&quot;cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc&quot;)); // a</b>
+<i class="no-highlight">128</i>&nbsp;    } // main()
+<i class="no-highlight">129</i>&nbsp;
+<i class="no-highlight">130</i>&nbsp;} // class LongestPalindromicSubstring
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-29 10:36</div>
+</div>
+</body>
+</html>

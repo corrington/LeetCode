@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MedianOfTwoSortedArrays</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: MedianOfTwoSortedArrays (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MedianOfTwoSortedArrays</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/34)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;import java.util.Arrays;
+<i class="no-highlight">2</i>&nbsp;
+<b class="nc"><i class="no-highlight">3</i>&nbsp;public class MedianOfTwoSortedArrays {</b>
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+<i class="no-highlight">6</i>&nbsp;
+<b class="nc"><i class="no-highlight">7</i>&nbsp;        if ((nums1 == null) || (nums2 == null)) return 0.0;</b>
+<i class="no-highlight">8</i>&nbsp;
+<b class="nc"><i class="no-highlight">9</i>&nbsp;        int[] mergedNums = new int[nums1.length + nums2.length];</b>
+<i class="no-highlight">10</i>&nbsp;
+<b class="nc"><i class="no-highlight">11</i>&nbsp;        int i1 = 0, i2 = 0, im = 0;</b>
+<i class="no-highlight">12</i>&nbsp;
+<b class="nc"><i class="no-highlight">13</i>&nbsp;        boolean isMerging = true;</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        while (isMerging) {</b>
+<i class="no-highlight">15</i>&nbsp;            // if both input arrays have values...
+<b class="nc"><i class="no-highlight">16</i>&nbsp;            if ((i1 &lt; nums1.length) &amp;&amp; (i2 &lt; nums2.length)) {</b>
+<i class="no-highlight">17</i>&nbsp;                // add them to the merged array in ascending order
+<b class="nc"><i class="no-highlight">18</i>&nbsp;                if (nums1[i1] &lt; nums2[i2]) {</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;                    mergedNums[im++] = nums1[i1++];</b>
+<i class="no-highlight">20</i>&nbsp;                } else {
+<b class="nc"><i class="no-highlight">21</i>&nbsp;                    mergedNums[im++] = nums2[i2++];</b>
+<i class="no-highlight">22</i>&nbsp;                }
+<i class="no-highlight">23</i>&nbsp;                // if only the first list still has values, copy them
+<b class="nc"><i class="no-highlight">24</i>&nbsp;            } else if (i1 &lt; nums1.length) {</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;                mergedNums[im++] = nums1[i1++];</b>
+<i class="no-highlight">26</i>&nbsp;                // if only the second list still has values, copy them
+<b class="nc"><i class="no-highlight">27</i>&nbsp;            } else if (i2 &lt; nums2.length) {</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;                mergedNums[im++] = nums2[i2++];</b>
+<i class="no-highlight">29</i>&nbsp;            } else {
+<i class="no-highlight">30</i>&nbsp;                // if both lists are empty, we are done.
+<b class="nc"><i class="no-highlight">31</i>&nbsp;                isMerging = false;</b>
+<i class="no-highlight">32</i>&nbsp;            }
+<i class="no-highlight">33</i>&nbsp;        } // while
+<i class="no-highlight">34</i>&nbsp;
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        System.out.println(Arrays.toString(nums1));</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        System.out.println(Arrays.toString(nums2));</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        System.out.println(Arrays.toString(mergedNums));</b>
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;
+<b class="nc"><i class="no-highlight">40</i>&nbsp;        if (mergedNums.length == 1)</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;            return (double)mergedNums[0];</b>
+<i class="no-highlight">42</i>&nbsp;
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        double result = 0.0;</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;        int mid = mergedNums.length / 2;</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;        if ((mergedNums.length % 2) == 1) {</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;            result = (double) mergedNums[mid];</b>
+<i class="no-highlight">47</i>&nbsp;        } else {
+<b class="nc"><i class="no-highlight">48</i>&nbsp;            result = (double)(mergedNums[mid-1] + mergedNums[mid]) / 2.0;</b>
+<i class="no-highlight">49</i>&nbsp;        }
+<i class="no-highlight">50</i>&nbsp;
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        return result;</b>
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;    } // findMedianSortedArrays()
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;    public static void main(String[] args) {
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;        //List&lt;Integer&gt; list = fixedSizeList(new int[] {1,2,3});
+<b class="nc"><i class="no-highlight">58</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {1,3}, new int[] {2}));</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {1,2}, new int[] {3,4}));</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {0,0}, new int[] {0,0}));</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {}, new int[] {1}));</b>
+<b class="nc"><i class="no-highlight">62</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {2}, new int[] {}));</b>
+<b class="nc"><i class="no-highlight">63</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {-4,-2,0,2,4,6,8}, new int[] {-5,-3,-1,1,3,5,7,9}));</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {-4,-2,0,2,4,6,8}, new int[] {-5,-2,-1,2,3,5,8,9}));</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;        System.out.printf(&quot;median is %f\n\n&quot;, findMedianSortedArrays(new int[] {}, new int[] {2,3}));</b>
+<i class="no-highlight">66</i>&nbsp;    } // main()
+<i class="no-highlight">67</i>&nbsp;} // class MedianOfTwoSortedArrays
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-29 10:36</div>
+</div>
+</body>
+</html>

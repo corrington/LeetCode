@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Task</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Task (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Task</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;class Task {
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;    private int taskID;
+<i class="no-highlight">4</i>&nbsp;    private int startTime;
+<i class="no-highlight">5</i>&nbsp;    private int procTime;
+<i class="no-highlight">6</i>&nbsp;
+<b class="nc"><i class="no-highlight">7</i>&nbsp;    Task(int taskID, int startTime, int procTime) {</b>
+<b class="nc"><i class="no-highlight">8</i>&nbsp;        this.setTaskID(taskID);</b>
+<b class="nc"><i class="no-highlight">9</i>&nbsp;        this.setStartTime(startTime);</b>
+<b class="nc"><i class="no-highlight">10</i>&nbsp;        this.setProcTime(procTime);</b>
+<i class="no-highlight">11</i>&nbsp;    } // Task() constructor
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;    int getTaskID() {
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        return taskID;</b>
+<i class="no-highlight">15</i>&nbsp;    }
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    void setTaskID(int taskID) {
+<b class="nc"><i class="no-highlight">18</i>&nbsp;        this.taskID = taskID;</b>
+<i class="no-highlight">19</i>&nbsp;    }
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;    int getStartTime() {
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        return startTime;</b>
+<i class="no-highlight">23</i>&nbsp;    }
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    void setStartTime(int startTime) {
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        this.startTime = startTime;</b>
+<i class="no-highlight">27</i>&nbsp;    }
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    int getProcTime() {
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        return procTime;</b>
+<i class="no-highlight">31</i>&nbsp;    }
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    void setProcTime(int procTime) {
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        this.procTime = procTime;</b>
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    public String toString() {
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        String str = &quot;{&quot; + taskID + &quot;, &quot; + startTime + &quot;, &quot; + procTime + &quot;}&quot;;</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        return str;</b>
+<i class="no-highlight">40</i>&nbsp;    } // toString()
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;} // class Task
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-29 10:36</div>
+</div>
+</body>
+</html>
