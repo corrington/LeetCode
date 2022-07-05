@@ -63,3 +63,4 @@ atlassian-ide-plugin.xml
 .idea/modules
 *.iml
 *.ipr
+/target/surefire-reports/
