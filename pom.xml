@@ -36,5 +36,12 @@
         <version>RELEASE</version>
         <scope>test</scope>
     </dependency>
+    <!-- to get rid of the error msg: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder". -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-nop</artifactId>
+        <version>1.7.25</version>
+    </dependency>
+
 </dependencies>
 </project>
