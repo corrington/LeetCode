@@ -58,10 +58,10 @@ public class LengthOfLastWord {
         if (s.length() == 0) return 0;
 
         // split the input string into an array of strings
-        String[] arrOfStr= s.split(" ");
+        String[] arrOfStrs = s.split(" ");
 
         // grab the last string and return its length
-        return arrOfStr[arrOfStr.length-1].length();
+        return arrOfStrs[arrOfStrs.length-1].length();
 
     } // lengthOfLastWord2()
 
