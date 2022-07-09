@@ -35,7 +35,7 @@ public class RemoveDuplicatesFromSortedArray {
 
             aftIndex++;
 
-        } // for oldTail
+        } // while
 
         return (foreIndex + 1);
 
