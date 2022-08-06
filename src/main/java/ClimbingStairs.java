@@ -27,19 +27,20 @@ public class ClimbingStairs {
 
     // DP (Bottom Up Approach)
     // To calculate the new value we only need the previous two values
+    // Complexity : Time: O(n) ; Space: O(1)
     public int climbStairs(int n) {
         if (n <= 1) return 1;
 
-        int prevStep1 = 1;
-        int prevStep2 = 2;
+        int prevStep = 1;
+        int currStep = 2;
 
         for (int i = 3; i <= n; i++) {
-            int newStep = prevStep2 + prevStep1;
-            prevStep1 = prevStep2;
-            prevStep2 = newStep;
+            int temp = currStep + prevStep;
+            prevStep = currStep;
+            currStep = temp;
         } // for step
 
-        return prevStep2;
+        return currStep;
 
     } // climbStairs()
 
