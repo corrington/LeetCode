@@ -1,9 +1,11 @@
 /*
 Problem 704. Binary Search
 https://leetcode.com/problems/binary-search/
+
 Given an array of integers nums which is sorted in ascending order, and an integer target,
 write a function to search target in nums. If target exists, then return its index.
 Otherwise, return -1.
+
 You must write an algorithm with O(log n) runtime complexity.
 
 Example 1:
@@ -21,58 +23,27 @@ Constraints:
     -104 < nums[i], target < 104
     All the integers in nums are unique.
     nums is sorted in ascending order.
+
  */
 public class BinarySearch {
-    // here's a recursive solution
-    private int search1(int[] nums, int target, int left, int right) {
-        if (left > right) return -1; // -1 indicates target was not found
 
-        int mid = (left + right) / 2;
+    public int search(int[] nums, int target) {
 
-        if (target < nums[mid]) {
-            // search the left half of the array
-            return search1(nums, target, left, mid - 1);
-        } else if (target > nums[mid]) {
-            // search the right half of the array
-            return search1(nums, target, mid + 1, right);
-        }
+        int low = 0;
+        int high = nums.length - 1;
 
-        return mid; // we found the target
-
-    } // search1()
-
-    public int search1(int[] nums, int target) {
-        // System.out.println("-----------------------------");  // DEBUG
-        return search1(nums, target, 0, nums.length - 1);
-    } // search1()
-
-
-
-    // here's a non-recursive solution
-    public int search2(int[] nums, int target) {
-
-        int left = 0;
-        int right = nums.length - 1;
-
-        while (left <= right) {
-
-            int mid = (left + right) / 2;
-
+        while (low <= high) {
+            int mid = (low + high) / 2;
             if (target < nums[mid]) {
-                // search the left half of the array
-                right = mid - 1;
+                high = mid - 1;
             } else if (target > nums[mid]) {
-                // search the right half of the array
-                left = mid + 1;
+                low = mid + 1;
             } else {
-                return mid; // found the target
-            } // if
+                return mid;         // found it
+            }
 
         } // while
-
-        return -1; // -1 indicates target was not found
-
-    } // search2()
-
+        return -1; // indicating the target was not found in the sorted array
+    } // search()
 
 } // class BinarySearch

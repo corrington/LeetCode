@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LongestCommonPrefixTest {
+class LongestCommonPrefixTest {
 
     @Test
-    public void testLongestCommonPrefix() {
+    void testLongestCommonPrefix() {
         // test cases
         var p = new LongestCommonPrefix();
 

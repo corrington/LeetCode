@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RemoveDuplicatesFromSortedArrayTest {
+class RemoveDuplicatesFromSortedArrayTest {
 
     @Test
-    public void testRemoveDuplicates() {
+    void testRemoveDuplicates() {
         var p = new RemoveDuplicatesFromSortedArray();
 
         int[] input1 = {};

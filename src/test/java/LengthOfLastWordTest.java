@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LengthOfLastWordTest {
+class LengthOfLastWordTest {
 
     @Test
-    public void testLengthOfLastWord() {
+     void testLengthOfLastWord() {
         var p = new LengthOfLastWord();
 
         assertEquals(p.lengthOfLastWord("Hello World"), 5);

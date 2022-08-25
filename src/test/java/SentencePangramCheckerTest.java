@@ -1,11 +1,12 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SentencePangramCheckerTest {
+class SentencePangramCheckerTest {
 
     @Test
-    public void testCheckIfPangram() {
+    void testCheckIfPangram() {
 
         SentencePangramChecker pt = new SentencePangramChecker();
         boolean result;

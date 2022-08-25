@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class RoadTest {
+class RoadTest {
 
     @Test
-    public void testHasObstacle() {
+    void testHasObstacle() {
 
         int[] obstacles = {0,1,2,3,0};
         Road road = new Road(obstacles);
@@ -26,7 +26,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testIsStepOutOfRange() {
+    void testIsStepOutOfRange() {
         int[] obstacles = {0,1,2,3,0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -44,7 +44,7 @@ public class RoadTest {
 
 
     @Test
-    public void testIsEndOfRoad() {
+    void testIsEndOfRoad() {
         int[] obstacles = {0,1,2,3,0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -64,7 +64,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testCanMoveForward() {
+    void testCanMoveForward() {
         int[] obstacles = {0,1,2,3,0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -93,7 +93,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testIsLaneOutOfRange() {
+    void testIsLaneOutOfRange() {
         int[] obstacles = {0,1,2,3,0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -110,7 +110,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testCanMoveUpOne() {
+    void testCanMoveUpOne() {
         int[] obstacles = {0,1,2,3,0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -139,7 +139,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testCanMoveUpTwo() {
+    void testCanMoveUpTwo() {
         int[] obstacles = {0, 1, 2, 3, 0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -165,7 +165,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testCanMoveDownOne() {
+    void testCanMoveDownOne() {
         int[] obstacles = {0,1,2,3,0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -191,7 +191,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testCanMoveDownTwo() {
+    void testCanMoveDownTwo() {
         int[] obstacles = {0, 1, 2, 3, 0};
         Road road = new Road(obstacles);
         boolean actualResult;
@@ -211,21 +211,7 @@ public class RoadTest {
     }
 
     @Test
-    public void testStrOfAdjPositions() {
-        // TODO: Implement
-    }
-
-    @Test
-    public void testPrint() {
-        // TODO: Implement
-    }
-
-    @Test
-    public void testIsLaneChange() {
-    } // testIsLaneChange()
-
-    @Test
-    public void testMinSideJumps() {
+    void testMinSideJumps() {
         System.out.println("*** Testing testMinSideJumps()");
         System.out.println("Test 1");
         int[] obstacles = {0, 1, 2, 3, 0};

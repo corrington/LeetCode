@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MaximumIceCreamBarsTest {
+class MaximumIceCreamBarsTest {
 
     @Test
-    public void testMaxIceCream() {
+    void testMaxIceCream() {
 
         MaximumIceCreamBars m = new MaximumIceCreamBars();
         int inputCoins;

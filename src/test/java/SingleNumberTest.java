@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SingleNumberTest {
+class SingleNumberTest {
 
     @Test
-    public void testSingleNumber1() {
+    void testSingleNumber1() {
         var p = new SingleNumber();
 
         int[] nums1 = {2,2,1};
@@ -27,7 +27,7 @@ public class SingleNumberTest {
 
 
     @Test
-    public void testSingleNumber2() {
+    void testSingleNumber2() {
         var p = new SingleNumber();
 
         int[] nums1 = {2,2,1};

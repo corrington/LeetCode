@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MinimumSidewayJumpsTest {
+class MinimumSidewayJumpsTest {
 
     @Test
-    public void testMinSideJumps() {
+    void testMinSideJumps() {
         var msj = new MinimumSidewayJumps();
         int expectedResult;
         int actualResult;

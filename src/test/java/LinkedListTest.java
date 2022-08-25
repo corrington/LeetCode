@@ -1,18 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LinkedListTest {
+class LinkedListTest {
 
-
-    @org.testng.annotations.Test
-    public void testAppend() {
-        // TODO:Implement
-    } // testAppend()
-
-
-    @org.testng.annotations.Test
-    public void testPrepend() {
+    @Test
+     void testPrepend() {
         LinkedList list;
         String result;
 
@@ -43,8 +36,8 @@ public class LinkedListTest {
 
     } //  testPrepend()
 
-    @org.testng.annotations.Test
-    public void testDeleteFirstOccurrence() {
+    @Test
+     void testDeleteFirstOccurrence() {
         LinkedList list;
         String result;
 
@@ -109,17 +102,4 @@ public class LinkedListTest {
 
     } // testDeleteWithValue()
 
-
-    @Test
-    public void testClear() {
-        LinkedList list;
-        String result;
-
-        // TODO: how to test this one?
-    }
-
-    @Test
-    public void testTestToString() {
-        // TODO: Implement
-    }
 } // class LinkedListTest

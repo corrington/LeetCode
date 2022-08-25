@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TaskTest {
+class TaskTest {
 
     @Test
-    public void testGetTaskID() {
+    void testGetTaskID() {
         int expectedTaskID = 34;
         Task t = new Task(expectedTaskID,0,0);
         int actualTaskID = t.getTaskID();
@@ -13,7 +13,7 @@ public class TaskTest {
     } // testGetTaskID()
 
     @Test
-    public void testSetTaskID() {
+    void testSetTaskID() {
         Task t = new Task(0,0,0);
         int expectedTaskID = 34;
         t.setTaskID(expectedTaskID);
@@ -22,7 +22,7 @@ public class TaskTest {
     } // testSetTaskID()
 
     @Test
-    public void testGetStartTime() {
+    void testGetStartTime() {
         int expectedStartTime = 34;
         Task t = new Task(0,expectedStartTime,0);
         int actualStartTime = t.getStartTime();
@@ -30,7 +30,7 @@ public class TaskTest {
     } // testGetStartTime()
 
     @Test
-    public void testSetStartTime() {
+    void testSetStartTime() {
         Task t = new Task(0,0,0);
         int expectedStartTime = 34;
         t.setStartTime(expectedStartTime);
@@ -39,7 +39,7 @@ public class TaskTest {
     } // testSetStartTime()
 
     @Test
-    public void testGetProcTime() {
+    void testGetProcTime() {
         int expectedProcTime = 34;
         Task t = new Task(0,0,expectedProcTime);
         int actualProcTime = t.getProcTime();
@@ -47,7 +47,7 @@ public class TaskTest {
     } // testGetProcTime()
 
     @Test
-    public void testSetProcTime() {
+    void testSetProcTime() {
         Task t = new Task(0,0,0);
         int expectedProcTime = 34;
         t.setProcTime(expectedProcTime);

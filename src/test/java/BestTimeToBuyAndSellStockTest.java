@@ -1,15 +1,15 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BestTimeToBuyAndSellStockTest {
+class BestTimeToBuyAndSellStockTest {
 
     @Test
-    public void testMaxProfit() {
+    void testMaxProfit() {
         var obj = new BestTimeToBuyAndSellStock();
 
-        assertEquals(obj.maxProfit(new int[] {7,1,5,3,6,4}), 5);
-        assertEquals(obj.maxProfit(new int[] {7,6,4,3,1}), 0);
+        assertEquals(5, obj.maxProfit(new int[] {7,1,5,3,6,4}));
+        assertEquals(0, obj.maxProfit(new int[]{7, 6, 4, 3, 1}));
     } // testMaxProfit()
 
 } // class BestTimeToBuyAndSellStockTest

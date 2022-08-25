@@ -1,12 +1,12 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ContainsDuplicateTest {
+class ContainsDuplicateTest {
 
     @Test
-    public void testContainsDuplicate() {
+     void testContainsDuplicate() {
         var p = new ContainsDuplicate();
 
         int[] nums1 = {1,2,3,1};

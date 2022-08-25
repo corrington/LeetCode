@@ -1,12 +1,12 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
-public class PlusOneTest {
+class PlusOneTest {
 
     @Test
-    public void testPlusOne() {
+    void testPlusOne() {
         var p = new PlusOne();
 
         int[] nums1 = {1,2,3};
@@ -32,7 +32,7 @@ public class PlusOneTest {
     } // testPlusOne()
 
     @Test
-    public void testPlusOne2() {
+    void testPlusOne2() {
         var p = new PlusOne();
 
         int[] nums1 = {1,2,3};

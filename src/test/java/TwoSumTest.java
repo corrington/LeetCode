@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class TwoSumTest {
+class TwoSumTest {
 
     @Test
-    public void testTwoSum() {
+    void testTwoSum() {
         var p = new TwoSum();
 
         int[] nums1 = {2,7,11,15};

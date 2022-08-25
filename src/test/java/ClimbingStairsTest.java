@@ -1,20 +1,20 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ClimbingStairsTest {
+class ClimbingStairsTest {
 
     @Test
-    public void testClimbStairs() {
+     void testClimbStairs() {
 
         var obj = new ClimbingStairs();
 
-        assertEquals(obj.climbStairs(0), 1);
-        assertEquals(obj.climbStairs(1), 1);
-        assertEquals(obj.climbStairs(2), 2);
-        assertEquals(obj.climbStairs(3), 3);
-        assertEquals(obj.climbStairs(4), 5);
-        assertEquals(obj.climbStairs(5), 8);
+        assertEquals(1, obj.climbStairs(0));
+        assertEquals(1, obj.climbStairs(1));
+        assertEquals(2, obj.climbStairs(2));
+        assertEquals(3, obj.climbStairs(3));
+        assertEquals(5, obj.climbStairs(4));
+        assertEquals(8, obj.climbStairs(5));
 
     } // testClimbStairs()
 

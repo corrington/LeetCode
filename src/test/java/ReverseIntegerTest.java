@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReverseIntegerTest {
+class ReverseIntegerTest {
 
     @Test
-    public void testReverseInteger() {
+    void testReverseInteger() {
         assertEquals(ReverseInteger.reverseInteger(0),0);
         System.out.println("0 passed");
         assertEquals(ReverseInteger.reverseInteger(1),1);

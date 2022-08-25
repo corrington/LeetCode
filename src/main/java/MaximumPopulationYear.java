@@ -1,15 +1,16 @@
 import java.util.Arrays;
+
 import static java.lang.Math.max;
 
 public class MaximumPopulationYear {
 
-    final static int MIN_YEAR = 1950;
-    final static int MAX_YEAR = 2050;
-    final static int NUM_OF_YEARS = MAX_YEAR - MIN_YEAR;
+    private final static int MIN_YEAR = 1950;
+    private final static int MAX_YEAR = 2050;
+    private final static int NUM_OF_YEARS = MAX_YEAR - MIN_YEAR;
 
 
     private static int[] calcPopulationEachYear(int[][] logs) {
-        int[] populationEachYear = new int[NUM_OF_YEARS+1];
+        int[] populationEachYear = new int[NUM_OF_YEARS + 1];
         Arrays.fill(populationEachYear, 0);
 
         for (var person : logs) {
@@ -17,8 +18,8 @@ public class MaximumPopulationYear {
             int deathYear = person[1];
 
             for (var year = birthYear; year < deathYear; ++year) {
-                int YearsAlive = year - MIN_YEAR;
-                populationEachYear[YearsAlive]++;
+                int yearsAlive = year - MIN_YEAR;
+                populationEachYear[yearsAlive]++;
             }
         } // for person
 
@@ -34,7 +35,7 @@ public class MaximumPopulationYear {
         return maxPopulation;
     } // maxPopulation()
 
-    private static int GetFirstYearOfTargetPopulation( int[] populationEachYear, int populationTarget) {
+    private static int getFirstYearOfTargetPopulation(int[] populationEachYear, int populationTarget) {
         for (var i = 0; i < populationEachYear.length; ++i) {
             if (populationEachYear[i] == populationTarget) {
                 return i;
@@ -47,7 +48,7 @@ public class MaximumPopulationYear {
         // <year, population>
         int[] populationEachYear = calcPopulationEachYear(logs);
         int maxPopulation = getMaxPopulation(populationEachYear);
-        int firstYearOfMaxPopulation = GetFirstYearOfTargetPopulation(populationEachYear, maxPopulation);
+        int firstYearOfMaxPopulation = getFirstYearOfTargetPopulation(populationEachYear, maxPopulation);
         return firstYearOfMaxPopulation + MIN_YEAR;
     } // maximumPopulation()
 

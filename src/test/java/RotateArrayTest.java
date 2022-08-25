@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class RotateArrayTest {
+class RotateArrayTest {
 
     @Test
-    public void testRotate1a() {
+    void testRotate1a() {
         var p = new RotateArray();
 
         int[] nums1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -81,7 +81,7 @@ public class RotateArrayTest {
     } // testRotate1a()
 
     @Test
-    public void testRotate1b() {
+    void testRotate1b() {
         var p = new RotateArray();
 
         int[] nums1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -157,7 +157,7 @@ public class RotateArrayTest {
     } // testRotate1b()
 
     @Test
-    public void testRotate2a() {
+    void testRotate2a() {
         var p = new RotateArray();
 
         int[] nums1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -233,7 +233,7 @@ public class RotateArrayTest {
     } // testRotate2a()
 
     @Test
-    public void testRotate3() {
+    void testRotate3() {
         var p = new RotateArray();
 
         int[] nums1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};

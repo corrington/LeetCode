@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PendingTasksComparatorTest {
+class PendingTasksComparatorTest {
 
     @Test
-    public void testCompare() {
+    void testCompare() {
         PendingTasksComparator ptc = new PendingTasksComparator();
         Task t1, t2;
         int actualResult, expectedResult;

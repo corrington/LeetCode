@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MinCostClimbingStairsTest {
+class MinCostClimbingStairsTest {
 
     @Test
-    public void testMinCostClimbingStairs() {
+    void testMinCostClimbingStairs() {
         var obj = new MinCostClimbingStairs();
 
         assertEquals(obj.minCostClimbingStairs(new int[] {10,15,20}), 15);

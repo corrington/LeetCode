@@ -1,13 +1,13 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SingleThreadedCPU2Test {
+class SingleThreadedCPU2Test {
 
     @Test
-    public void testGetOrder() {
+    void testGetOrder() {
 
         var cpu = new SingleThreadedCPU2();
 

@@ -1,11 +1,11 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NthTribonacciNumberTest {
+class NthTribonacciNumberTest {
 
     @Test
-    public void testTribonacciClassic() {
+    void testTribonacciClassic() {
         var o = new NthTribonacciNumber();
 
         assertEquals(o.tribonacciClassic(0),0);
@@ -22,7 +22,7 @@ public class NthTribonacciNumberTest {
     } // testTribonacci()
 
     @Test
-    public void testTribonacci() {
+    void testTribonacci() {
         var o = new NthTribonacciNumber();
 
         assertEquals(o.tribonacci(0),0);
