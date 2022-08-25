@@ -8,8 +8,6 @@ public class Summing {
     private static final HashMap<Integer, Boolean> memoSums = new HashMap<>();
     private static final HashMap<Integer, int[]> memo4 = new HashMap<>();
     private static final HashMap<Integer, int[]> memoSumBest = new HashMap<>();
-    private static final HashMap<String, Boolean> memo5 = new HashMap<>();
-
 
 
     public static long fibClassic(int n) {
@@ -101,8 +99,7 @@ public class Summing {
     }
 
     public static int[] howSumClassic(int targetSum, int[] numbers) {
-        if (targetSum == 0) return new int[] {};
-        if (targetSum < 0) return null;
+        if (targetSum <= 0) return new int[] {};
 
         for (var num : numbers) {
             int remainder = targetSum - num;
@@ -111,13 +108,12 @@ public class Summing {
                 return copyAndAppend(answers, num);
             }
         } // for num
-        return null;
+        return new int[] {};
     } // howSumClassic()
 
     public static int[] howSumMemo(int targetSum, int[] numbers) {
         if (memo4.containsKey(targetSum)) return memo4.get(targetSum);
-        if (targetSum == 0) return new int[] {};
-        if (targetSum < 0) return null;
+        if (targetSum <= 0) return new int[] {};
 
         for (var num : numbers) {
             int remainder = targetSum - num;
@@ -129,12 +125,11 @@ public class Summing {
             }
         } // for num
         memo4.put(targetSum, null);
-        return null;
+        return new int[] {};
     } // howSumMemo()
 
     public static int[] bestSumClassic(int targetSum, int[] numbers) {
-        if (targetSum == 0) return new int[] {};
-        if (targetSum < 0) return null;
+        if (targetSum <= 0) return new int[] {};
 
         int[] shortestCombo = null;
         for (int i = 0; i < numbers.length; ++i) {
@@ -154,7 +149,7 @@ public class Summing {
     public static int[] shortestSumMemo(int targetSum, int[] numbers) {
         if (memoSumBest.containsKey(targetSum)) return memoSumBest.get(targetSum);
         if (targetSum == 0) return new int[] {};
-        if (targetSum < 0) return null;
+        if (targetSum < 0) return new int[] {};
 
         int[] shortestCombo = null;
         for (int i = 0; i < numbers.length; ++i) {

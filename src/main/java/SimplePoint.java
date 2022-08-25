@@ -1,5 +1,6 @@
 public class SimplePoint {
-    private int x, y;
+    private int x;
+    private int y;
 
     public SimplePoint() {
         this.x = 0;

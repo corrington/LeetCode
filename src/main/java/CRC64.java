@@ -25,9 +25,9 @@ public class CRC64 {
     private static final int TABLE_LENGTH = 256;
     private static final long[] TABLE = new long[TABLE_LENGTH];
 
-    private long value = -1;
+    private static long value = -1;
 
-    private void init() { // Initialize a table constructed from POLY (0x9a6c9329ac4bc9b5L).
+    private static void init() { // Initialize a table constructed from POLY (0x9a6c9329ac4bc9b5L).
         value = -1;
         for (int n = 0; n < TABLE_LENGTH; ++n) {
             long crc = n;
@@ -46,7 +46,7 @@ public class CRC64 {
      * @param input byte arrays.
      * @return long value of the CRC-64 checksum of the data.
      * */
-    public long compute(byte[] input) {
+    public static long compute(byte[] input) {
         init();
         for (byte b : input) {
             value = TABLE[(b ^ (int) value) & 0xFF] ^ (value >>> 8);
