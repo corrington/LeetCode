@@ -1,11 +1,12 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class MiddleOfTheLinkedListTest {
+class MiddleOfTheLinkedListTest {
 
     @Test
-    public void MiddleNode() {
+    void MiddleNode() {
         var list = new MiddleOfTheLinkedList();
         list.add(new int[] {1,2,3,4,5});
         MiddleOfTheLinkedList.ListNode node = list.middleNode(list.getHead());
@@ -40,7 +41,7 @@ public class MiddleOfTheLinkedListTest {
     } // MiddleNode()
 
     @Test
-    public void MiddleNode2() {
+    void MiddleNode2() {
         var list = new MiddleOfTheLinkedList();
         list.add(new int[] {1,2,3,4,5});
         MiddleOfTheLinkedList.ListNode node = list.middleNode2(list.getHead());
