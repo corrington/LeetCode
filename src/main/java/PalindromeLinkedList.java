@@ -13,8 +13,6 @@ Constraints:
     0 <= Node.val <= 9
 Follow up: Could you do it in O(n) time and O(1) space?
  */
-
-
 public class PalindromeLinkedList {
     /*
 
@@ -46,33 +44,13 @@ public class PalindromeLinkedList {
 
     } // isPalindrome()
 
-    /*
-     *
-     */
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    } // class ListNode
-
 
     public static void main(String[] args) {
         var obj = new PalindromeLinkedList();
-        PalindromeLinkedList.ListNode head = new PalindromeLinkedList.ListNode(1);
-        head.next = new PalindromeLinkedList.ListNode(2);
-        head.next.next = new PalindromeLinkedList.ListNode(2);
-        head.next.next.next = new PalindromeLinkedList.ListNode(1);
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(2);
+        head.next.next.next = new ListNode(1);
 
         System.out.println(obj.isPalindrome2(head));
     } // main()

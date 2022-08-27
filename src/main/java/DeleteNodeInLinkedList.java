@@ -27,15 +27,6 @@ Constraints:
  */
 public class DeleteNodeInLinkedList {
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    } // class ListNode
-
     // "deletes" a node by coping the contents of the next node into the given node.
     public void deleteNode(ListNode node) {
         node.val = node.next.val;

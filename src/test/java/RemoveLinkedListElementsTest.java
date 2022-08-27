@@ -1,10 +1,10 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RemoveLinkedListElementsTest {
 
-    private String stringOf(RemoveLinkedListElements.ListNode head) {
+    private String stringOf(ListNode head) {
         StringBuilder sb = new StringBuilder("[");
         while (head != null) {
             sb.append(head.val);
@@ -19,21 +19,21 @@ class RemoveLinkedListElementsTest {
     void removeElements() {
         var obj = new RemoveLinkedListElements();
 
-        var head = new RemoveLinkedListElements.ListNode(1);
-        head.next = new RemoveLinkedListElements.ListNode(2);
-        head.next.next = new RemoveLinkedListElements.ListNode(6);
-        head.next.next.next = new RemoveLinkedListElements.ListNode(3);
-        head.next.next.next.next = new RemoveLinkedListElements.ListNode(4);
-        head.next.next.next.next.next = new RemoveLinkedListElements.ListNode(5);
+        var head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(6);
+        head.next.next.next = new ListNode(3);
+        head.next.next.next.next = new ListNode(4);
+        head.next.next.next.next.next = new ListNode(5);
         assertEquals("[1,2,3,4,5]", stringOf(obj.removeElements(head, 6)));
 
         head = null;
         assertEquals("[]", stringOf(obj.removeElements(head, 6)));
 
-        head = new RemoveLinkedListElements.ListNode(7);
-        head.next = new RemoveLinkedListElements.ListNode(7);
-        head.next.next = new RemoveLinkedListElements.ListNode(7);
-        head.next.next.next = new RemoveLinkedListElements.ListNode(7);
+        head = new ListNode(7);
+        head.next = new ListNode(7);
+        head.next.next = new ListNode(7);
+        head.next.next.next = new ListNode(7);
         assertEquals("[]", stringOf(obj.removeElements(head, 7)));
 
     } // removeElements()

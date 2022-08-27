@@ -76,18 +76,6 @@ public class LinkedListCycle {
     } // hasCycle2()
 
 
-    /*
-     *
-     */
-    static class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) {
-        val = x;
-        next = null;
-      } // ListNode() constructor
-    } // class ListNode
-
     public static void main(String[] args) {
         var obj = new LinkedListCycle();
         ListNode head = new ListNode(1);

@@ -9,7 +9,7 @@ class MiddleOfTheLinkedListTest {
     void MiddleNode() {
         var list = new MiddleOfTheLinkedList();
         list.add(new int[] {1,2,3,4,5});
-        MiddleOfTheLinkedList.ListNode node = list.middleNode(list.getHead());
+        ListNode node = list.middleNode(list.getHead());
         assertEquals(node.val, 3);
 
 
@@ -44,7 +44,7 @@ class MiddleOfTheLinkedListTest {
     void MiddleNode2() {
         var list = new MiddleOfTheLinkedList();
         list.add(new int[] {1,2,3,4,5});
-        MiddleOfTheLinkedList.ListNode node = list.middleNode2(list.getHead());
+        ListNode node = list.middleNode2(list.getHead());
         assertEquals(node.val, 3);
 
 

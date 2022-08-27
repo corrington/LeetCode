@@ -82,41 +82,5 @@ public class AddTwoNumberLists {
         System.out.println(sListHead);
     } // main()
 
-    /**
-     * Definition for singly-linked list (provided by LeetCode)
-     */
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        public String toString() {
-            StringBuilder str = new StringBuilder();
-            str.append("[");
-            ListNode index = this;
-            while (index != null) {
-                str.append(index.val);
-                index = index.next;
-                if (index != null) {
-                    str.append(",");
-                } // if
-            } // while
-            str.append("]");
-            return str.toString();
-        } // toString()
-
-    } // class ListNode
-
 } // class AddTwoNumberLists
 
