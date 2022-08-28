@@ -28,9 +28,11 @@ import java.util.ArrayList;
 
 public class DecompressRunLengthEncodedList {
 
+    // In this solution use an ArrayList to dynamically build the decompressed list.
     public int[] decompressRLEList1(int[] nums) {
         var decompressedArrayList = new ArrayList<Integer>();
 
+        // for each pair [freq, value], decompress and add to the ArrayList
         for (int i = 0; i < nums.length; i += 2) {
             int freq = nums[i];
             int value = nums[i+1];
@@ -40,6 +42,8 @@ public class DecompressRunLengthEncodedList {
         } // for i
 
         int[] decompressedList = new int[decompressedArrayList.size()];
+
+        // convert the ArrayList to standard int array.
         for (int i = 0; i < decompressedArrayList.size(); i++ ) {
             decompressedList[i] = decompressedArrayList.get(i);
         } // for i
