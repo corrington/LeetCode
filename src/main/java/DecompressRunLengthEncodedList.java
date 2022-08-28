@@ -36,7 +36,7 @@ public class DecompressRunLengthEncodedList {
             int value = nums[i+1];
             for (int f = 0; f < freq; f++) {
                 decompressedArrayList.add(value);
-            } // for c
+            } // for f
         } // for i
 
         int[] decompressedList = new int[decompressedArrayList.size()];
